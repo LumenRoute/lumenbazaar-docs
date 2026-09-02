@@ -18,6 +18,11 @@ Target structure:
 ```txt
 introduction.md
 getting-started.md
+project/
+  positioning.md
+  problem-and-goals.md
+  personas.md
+  non-goals.md
 architecture/
   overview.md
   payment-flow.md
@@ -63,6 +68,56 @@ funding/
   drips-plan.md
   milestones.md
   metrics.md
+contributing/
+  repository-standards.md
+  issue-template.md
+reference/
+  glossary.md
+  source-links.md
+```
+
+Docs-as-code structure:
+
+```txt
+README.md
+LICENSE
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+package.json
+.editorconfig
+.gitignore
+.github/
+  PULL_REQUEST_TEMPLATE.md
+  ISSUE_TEMPLATE/
+    contributor_task.yml
+  workflows/
+    ci.yml
+docs/
+  introduction.md
+  getting-started.md
+  project/
+  architecture/
+  guides/
+  api-reference/
+  contracts/
+  sdks/
+  examples/
+  security/
+  operations/
+  funding/
+  contributing/
+  reference/
+static/
+  diagrams/
+  images/
+snippets/
+  seller-sdk/
+  buyer-sdk/
+  mcp/
+generated/
+  openapi/
+  contracts/
 ```
 
 Implementation rules:
@@ -73,6 +128,10 @@ Implementation rules:
 - Clearly state that LumenBazaar is not official Stellar or SDF infrastructure.
 - Separate testnet proof from mainnet readiness.
 - Avoid presenting screenshots as conformance proof.
+- Preserve the source document's product positioning: Stellar-native x402 facilitator, Bazaar discovery layer, MCP server, SDKs, and Soroban metered-payment contracts.
+- Serve the documented readers explicitly: sellers, buyers, AI agent developers, operators, contributors, reviewers, and security auditors.
+- Keep exact payments and `upto` sessions documented as separate flows.
+- Use source links as references, but treat live protocol and package details as drift-prone and verify them before publishing generated or reference docs.
 
 ## Phase 1: Repository Foundation
 
@@ -80,8 +139,9 @@ Parts:
 
 - Choose Mintlify, Docusaurus, Nextra, or a GitBook-compatible setup.
 - Add docs site scaffold.
-- Add `README.md`, `LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, PR template, issue template, and CI.
+- Add `README.md`, `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, PR template, issue template, and CI.
 - Add markdown linting and link checking.
+- Add folders for static diagrams, reusable snippets, and generated references.
 
 Completion check:
 
@@ -93,6 +153,8 @@ Parts:
 
 - Create top-level navigation.
 - Create architecture, guides, API reference, contracts, SDKs, examples, security, operations, and funding sections.
+- Create project, contributing, and reference sections.
+- Configure sidebars so beginner paths and reviewer paths are easy to scan.
 - Add redirects or placeholders for pages that depend on later implementation.
 
 Completion check:
@@ -105,8 +167,10 @@ Parts:
 
 - Write `introduction.md`.
 - Explain LumenBazaar in one sentence.
+- Include short and long pitch material.
 - Explain x402 facilitator, Bazaar discovery, MCP server, SDKs, and Soroban contracts.
 - State open-source and self-hostable goals.
+- State that the project is developer infrastructure, not a consumer wallet or custodial payment service.
 
 Completion check:
 
@@ -121,6 +185,7 @@ Parts:
 - Explain local setup order.
 - List required services.
 - Link to seller, buyer, agent, and operator paths.
+- Link to contributor and reviewer paths.
 
 Completion check:
 
@@ -148,6 +213,8 @@ Parts:
 - Write `architecture/overview.md`.
 - Explain seller API, seller SDK, buyer SDK, backend API, facilitator, discovery service, MCP server, search, workers, contracts, frontend, and docs.
 - Add system architecture Mermaid diagram.
+- Document component responsibilities and boundaries.
+- Show how frontend, backend, contracts, and docs connect without merging repository ownership.
 
 Completion check:
 
@@ -164,6 +231,8 @@ Parts:
 - Explain facilitator verification.
 - Explain retry and settlement.
 - Explain receipt creation.
+- Distinguish exact payment flow from future `upto` session flow.
+- State that receipts and transaction hashes are the evidence, not screenshots.
 
 Completion check:
 
@@ -178,6 +247,8 @@ Parts:
 - Explain resource cataloging.
 - Explain resource search.
 - Explain HTTP endpoint and MCP tool discovery.
+- Explain `partialResults`.
+- Explain why discovery indexing is off-chain by default.
 - Add discovery flow Mermaid diagram.
 
 Completion check:
@@ -194,6 +265,7 @@ Parts:
 - Explain off-chain discovery index.
 - Explain payment verification boundaries.
 - Explain what the facilitator can and cannot guarantee.
+- Explain seller metadata trust, route-template validation, replay prevention, and network dependency risk.
 
 Completion check:
 
@@ -676,3 +748,125 @@ Parts:
 Completion check:
 
 - Docs remain the reliable project source of truth over time.
+
+## Phase 42: Project Positioning Pages
+
+Parts:
+
+- Write `project/positioning.md`.
+- Capture the one-sentence pitch, short pitch, and long pitch.
+- Explain the Stellar, x402, Bazaar, MCP, SDK, and Soroban positioning.
+- State that LumenBazaar is open-source infrastructure and not official SDF infrastructure.
+- State the hosted-service, self-hosted-infrastructure, and open-reference-infrastructure use cases.
+
+Completion check:
+
+- Project positioning is available outside the SCF proposal and matches the source project documentation.
+
+## Phase 43: Problem, Goals, And Non-Goals
+
+Parts:
+
+- Write `project/problem-and-goals.md`.
+- Document the paid API onboarding problem.
+- Document the eight primary product goals.
+- Write `project/non-goals.md`.
+- Document non-custodial boundaries, no private key custody, no required hosted operator, no speculative token incentives, and no hidden settlement details.
+
+Completion check:
+
+- Product scope is clear enough to prevent docs, issue, and implementation drift.
+
+## Phase 44: Persona Reading Paths
+
+Parts:
+
+- Write `project/personas.md`.
+- Add seller reading path.
+- Add buyer reading path.
+- Add AI agent developer reading path.
+- Add operator reading path.
+- Add contributor reading path.
+- Add reviewer, funder, and security auditor reading paths.
+
+Completion check:
+
+- Each documented user type can find the right sequence of docs without guessing.
+
+## Phase 45: Repository Standards Docs
+
+Parts:
+
+- Write `contributing/repository-standards.md`.
+- Document required files for every repo: `README.md`, `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, PR template, issue template, CI, `.editorconfig`, and `.gitignore`.
+- Document required README content for every repo.
+- Document cross-repo link requirements.
+
+Completion check:
+
+- Maintainers can apply one consistent repository standard across all four repos.
+
+## Phase 46: Contributor Issue Template Docs
+
+Parts:
+
+- Write `contributing/issue-template.md`.
+- Include the required issue sections: description, requirements and context, scope, acceptance criteria, test requirements, relevant files, suggested execution, and guidelines.
+- Document that every issue should be scoped for one contributor and one pull request.
+- Document `Closes #ISSUE_NUMBER` usage for PR descriptions.
+
+Completion check:
+
+- Drips-ready issue creation can happen from documented templates.
+
+## Phase 47: Glossary
+
+Parts:
+
+- Write `reference/glossary.md`.
+- Define x402, facilitator, Bazaar discovery, MCP, Stellar Asset Contract, SEP-41, Soroban auth entry, smart account, exact payment, `upto` session, receipt, resource, seller, buyer, and operator.
+- Link glossary terms back to architecture and guide pages.
+
+Completion check:
+
+- New contributors and reviewers can understand project terms without leaving the docs.
+
+## Phase 48: Source Links And Reference Tracking
+
+Parts:
+
+- Write `reference/source-links.md`.
+- Include primary references for Stellar Community Fund, SCF RFP Track, Stellar x402 docs, Built on Stellar x402 facilitator, Stellar smart wallets, x402 Foundation, Bazaar extension, Stellar exact scheme, `upto` scheme, Stellar x402 tooling, `@x402/stellar`, and Drips Wave.
+- Mark external protocol and package references as drift-prone.
+- Add a publication checklist requiring verification of external links before release.
+
+Completion check:
+
+- Docs preserve the source references and do not publish stale protocol claims without a verification step.
+
+## Phase 49: Tranche And Evidence Model
+
+Parts:
+
+- Add SCF tranche structure to `funding/scf-rfp-proposal.md` or `funding/milestones.md`.
+- Document Tranche 0 foundation, Tranche 1 exact facilitator and discovery testnet, Tranche 2 SDKs/MCP/frontend/upto testnet, and Tranche 3 mainnet/conformance/audit/public metrics.
+- Document evidence expected for each tranche.
+- Separate local checks, testnet transaction evidence, mainnet transaction evidence, CI state, and conformance results.
+
+Completion check:
+
+- Funding docs can support SCF review without overstating unverified work.
+
+## Phase 50: Docs Content Consistency Audit
+
+Parts:
+
+- Check naming consistency for `LumenBazaar`, `LumenRoute`, and `Veridatum Labs`.
+- Check every guide keeps seller, buyer, agent, and operator responsibilities separate.
+- Check exact payment, discovery, MCP, and `upto` contract terms are not conflated.
+- Check no content implies custodial fund handling.
+- Check no page claims official Stellar, SDF, or SCF endorsement.
+
+Completion check:
+
+- Docs match the architecture, trust model, and scope in the source project documentation.
