@@ -1,11 +1,15 @@
 // @ts-check
 
 /** @type {import('@docusaurus/types').Config} */
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+
 const config = {
   title: 'LumenBazaar',
   tagline: 'Stellar-native x402 facilitator and Bazaar discovery documentation',
-  url: process.env.DOCUSAURUS_URL || 'https://lumenroute.github.io',
-  baseUrl: process.env.BASE_URL || '/lumenbazaar-docs/',
+  url:
+    process.env.DOCUSAURUS_URL ||
+    (vercelUrl ? `https://${vercelUrl}` : 'https://lumenbazaar-docs.vercel.app'),
+  baseUrl: process.env.BASE_URL || '/',
   organizationName: 'LumenRoute',
   projectName: 'lumenbazaar-docs',
   onBrokenLinks: 'throw',

@@ -1,9 +1,6 @@
 name: Deploy Docs
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -44,6 +41,9 @@ jobs:
         run: npm run check:content
 
       - name: Build docs
+        env:
+          DOCUSAURUS_URL: https://lumenroute.github.io
+          BASE_URL: /lumenbazaar-docs/
         run: npm run build
 
       - name: Upload artifact

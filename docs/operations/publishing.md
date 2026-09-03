@@ -1,17 +1,57 @@
 # Publishing
 
-The docs site is configured for GitHub Pages by default and can move to a custom production domain later.
+The docs site is configured for Vercel by default. GitHub Pages remains available as a manual fallback after Pages is enabled in the repository settings.
 
-## Default Public URL
+## Vercel Deployment
 
-Default GitHub Pages settings:
+Vercel should use these project settings:
 
 ```txt
-url: https://lumenroute.github.io
-baseUrl: /lumenbazaar-docs/
+Framework Preset: Other
+Install Command: npm ci
+Build Command: npm run build
+Output Directory: build
 ```
 
-Expected default site URL:
+The same settings are committed in:
+
+```txt
+vercel.json
+```
+
+Default Docusaurus settings for Vercel:
+
+```txt
+baseUrl: /
+url: derived from DOCUSAURUS_URL, VERCEL_PROJECT_PRODUCTION_URL, VERCEL_URL, or https://lumenbazaar-docs.vercel.app
+```
+
+Set `DOCUSAURUS_URL` in Vercel only when the production docs domain is known.
+
+## GitHub Pages Fallback
+
+The GitHub Pages workflow is manual only:
+
+```txt
+.github/workflows/deploy.yml
+```
+
+Before running it, enable Pages in GitHub:
+
+```txt
+Settings -> Pages -> Source -> GitHub Actions
+```
+
+If Pages is not enabled, `actions/deploy-pages` returns a 404 when it tries to create the deployment.
+
+The workflow builds with GitHub Pages path settings:
+
+```txt
+DOCUSAURUS_URL=https://lumenroute.github.io
+BASE_URL=/lumenbazaar-docs/
+```
+
+Expected GitHub Pages URL:
 
 ```txt
 https://lumenroute.github.io/lumenbazaar-docs/
