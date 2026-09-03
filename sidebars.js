@@ -94,6 +94,7 @@ const sidebars = {
         'operations/incident-response',
         'operations/runbook',
         'operations/publishing',
+        'operations/maintenance',
       ],
     },
     {
