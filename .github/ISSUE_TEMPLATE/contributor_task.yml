@@ -1,0 +1,66 @@
+name: Contributor task
+description: A scoped LumenBazaar documentation task
+title: "[Docs]: "
+labels:
+  - docs
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the task and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements and context
+      description: Explain related protocol, repo, and implementation context.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: List exactly what files or modules are expected to change.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List criteria that must be true before merge.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test requirements
+      description: List lint, link, build, or generated-reference checks.
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Relevant files
+      description: List files the contributor should inspect or update.
+    validations:
+      required: true
+  - type: textarea
+    id: execution
+    attributes:
+      label: Suggested execution
+      description: Provide a short ordered implementation path.
+    validations:
+      required: false
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Guidelines
+      options:
+        - label: Keep the pull request scoped to this issue.
+          required: true
+        - label: Do not change unrelated files.
+          required: true
+        - label: Include a closing directive in the pull request description.
+          required: true
