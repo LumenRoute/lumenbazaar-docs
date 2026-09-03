@@ -49,6 +49,21 @@ const config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          to: '/guides/seller-guide',
+          label: 'Sellers',
+          position: 'left',
+        },
+        {
+          to: '/guides/buyer-guide',
+          label: 'Buyers',
+          position: 'left',
+        },
+        {
+          to: '/operations/self-hosting',
+          label: 'Operators',
+          position: 'left',
+        },
       ],
     },
     footer: {
@@ -61,14 +76,22 @@ const config = {
               label: 'Overview',
               to: '/',
             },
+            {
+              label: 'Architecture',
+              to: '/architecture/overview',
+            },
           ],
         },
         {
           title: 'Developers',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/LumenRoute',
+              label: 'Seller Guide',
+              to: '/guides/seller-guide',
+            },
+            {
+              label: 'Buyer Guide',
+              to: '/guides/buyer-guide',
             },
           ],
         },
@@ -76,8 +99,12 @@ const config = {
           title: 'Operations',
           items: [
             {
-              label: 'Repository',
-              href: 'https://github.com/LumenRoute/lumenbazaar-docs',
+              label: 'Security',
+              to: '/security/threat-model',
+            },
+            {
+              label: 'Self-Hosting',
+              to: '/operations/self-hosting',
             },
           ],
         },
