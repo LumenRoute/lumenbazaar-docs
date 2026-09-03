@@ -106,6 +106,7 @@ const sidebars = {
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
+        'funding/tranche-evidence',
       ],
     },
     {
