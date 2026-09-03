@@ -31,5 +31,8 @@ jobs:
       - name: Check generated references
         run: npm run check:generated
 
+      - name: Check content quality
+        run: npm run check:content
+
       - name: Build site
         run: npm run build

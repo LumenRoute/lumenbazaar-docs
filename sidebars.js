@@ -121,6 +121,7 @@ const sidebars = {
         'reference/glossary',
         'reference/source-links',
         'reference/generated-references',
+        'reference/content-qa',
       ],
     },
   ],
