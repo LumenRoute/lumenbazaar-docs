@@ -9,6 +9,17 @@ LumenBazaar is a Stellar-native x402 facilitator and Bazaar discovery layer for 
 
 It helps sellers publish payable HTTP endpoints and MCP tools, helps buyers and agents discover those resources, and uses Stellar payment flows to verify and settle requests without credit-card billing, prepaid credits, account dashboards, or custodial wallets.
 
+## Quick Links
+
+**Get started in 5 minutes:**
+- [Seller Guide](/guides/seller-guide) • [Buyer Guide](/guides/buyer-guide) • [Agent Guide](/guides/agent-guide)
+
+**Explore the system:**
+- [Architecture](/architecture/overview) • [Payment Flow](/architecture/payment-flow) • [Discovery Flow](/architecture/discovery-flow)
+
+**Deploy & operate:**
+- [Testnet Guide](/guides/testnet-guide) • [Mainnet Guide](/guides/mainnet-guide) • [Self-Hosting](/operations/self-hosting)
+
 ## What LumenBazaar Provides
 
 LumenBazaar combines five pieces of open infrastructure:
