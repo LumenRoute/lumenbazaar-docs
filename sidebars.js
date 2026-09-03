@@ -120,6 +120,7 @@ const sidebars = {
       items: [
         'reference/glossary',
         'reference/source-links',
+        'reference/generated-references',
       ],
     },
   ],

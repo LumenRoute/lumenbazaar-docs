@@ -8,7 +8,8 @@
     "build": "docusaurus build",
     "serve": "docusaurus serve",
     "lint": "markdownlint-cli2",
-    "links": "node scripts/check-links.mjs"
+    "links": "node scripts/check-links.mjs",
+    "check:generated": "node scripts/check-generated.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
