@@ -12,12 +12,15 @@ It helps sellers publish payable HTTP endpoints and MCP tools, helps buyers and 
 ## Quick Links
 
 **Get started in 5 minutes:**
+
 - [Seller Guide](/guides/seller-guide) • [Buyer Guide](/guides/buyer-guide) • [Agent Guide](/guides/agent-guide)
 
 **Explore the system:**
+
 - [Architecture](/architecture/overview) • [Payment Flow](/architecture/payment-flow) • [Discovery Flow](/architecture/discovery-flow)
 
 **Deploy & operate:**
+
 - [Testnet Guide](/guides/testnet-guide) • [Mainnet Guide](/guides/mainnet-guide) • [Self-Hosting](/operations/self-hosting)
 
 ## What LumenBazaar Provides
