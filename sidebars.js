@@ -103,6 +103,7 @@ const sidebars = {
         'funding/drips-plan',
         'funding/milestones',
         'funding/metrics',
+        'funding/conformance-report-template',
       ],
     },
     {
