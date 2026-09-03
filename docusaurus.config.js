@@ -4,8 +4,8 @@
 const config = {
   title: 'LumenBazaar',
   tagline: 'Stellar-native x402 facilitator and Bazaar discovery documentation',
-  url: 'https://lumenroute.github.io',
-  baseUrl: '/',
+  url: process.env.DOCUSAURUS_URL || 'https://lumenroute.github.io',
+  baseUrl: process.env.BASE_URL || '/lumenbazaar-docs/',
   organizationName: 'LumenRoute',
   projectName: 'lumenbazaar-docs',
   onBrokenLinks: 'throw',
@@ -28,6 +28,13 @@ const config = {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/LumenRoute/lumenbazaar-docs/edit/main/',
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'Next',
+              path: '',
+            },
+          },
         },
         blog: false,
         theme: {
