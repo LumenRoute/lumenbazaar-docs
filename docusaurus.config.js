@@ -19,7 +19,19 @@ const config = {
       onBrokenMarkdownLinks: 'throw',
     },
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        docsRouteBasePath: '/',
+        hashed: true,
+        indexBlog: false,
+        indexDocs: true,
+        indexPages: false,
+      },
+    ],
+  ],
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
