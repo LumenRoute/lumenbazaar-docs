@@ -128,7 +128,7 @@ repository gate, evidence record, review, and commit are complete.
 | 40 | Wave operations | [docs #29](https://github.com/LumenRoute/lumenbazaar-docs/issues/29) | [Inactive operations ledger prepared](/funding/wave-operations-ledger); blocked on organizer approval |
 | 41 | Backend | [backend #34](https://github.com/LumenRoute/lumenbazaar-backend/issues/34) | [Candidate set prepared; application blocked on Gate B](/funding/repository-application-gates#backend-repository) |
 | 42 | Frontend | [frontend #28](https://github.com/LumenRoute/lumenbazaar-frontend/issues/28) | [Candidate set prepared; application blocked on Gates B and C](/funding/repository-application-gates#frontend-repository) |
-| 43 | Docs | [docs #30](https://github.com/LumenRoute/lumenbazaar-docs/issues/30) | Blocked on Gate D and the contracts application cycle |
+| 43 | Docs | [docs #30](https://github.com/LumenRoute/lumenbazaar-docs/issues/30) | [Retained as non-applied supporting infrastructure](/funding/repository-application-gates#docs-repository) |
 
 ## Existing Wave Candidates
 

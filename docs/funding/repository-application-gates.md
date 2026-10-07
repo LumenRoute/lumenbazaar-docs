@@ -150,3 +150,53 @@ Do not apply while the live UI can succeed through fixtures, a wallet draft,
 interception, synthetic transaction evidence, or a v1 payload. Do not apply
 before the backend is itself eligible. Gates B and C remain open, so Phase 42
 is not complete and the frontend must not be submitted.
+
+## Docs Repository
+
+Decision: retain as non-applied supporting infrastructure.
+
+Docs [PR #31](https://github.com/LumenRoute/lumenbazaar-docs/pull/31)
+contains the readiness remediation, generated references, deployment truth,
+reviewer guide, governance, evidence packs, and application controls. It still
+requires independent approval and a deployment that identifies the reviewed
+commit, so Gate D remains open. The contracts application cycle has also not
+started because no Stellar Wave is active.
+
+### Roadmap Assessment
+
+The current docs issue inventory does not provide a credible independent Wave
+set:
+
+- former candidate issues #1-#8 are covered by the protected docs pull request
+  or by evidence that must stay synchronized with the code repositories;
+- documenting the live exact lifecycle, backend deployment, or frontend result
+  before those systems pass their gates would make missing product
+  prerequisites look like contributor work;
+- routine link repair, generated-reference refreshes, copy edits, screenshots,
+  and release synchronization are normal repository maintenance rather than a
+  reason to consume a separate repository application; and
+- broader operations, privacy, security, testing, and migration documentation
+  should remain owned with the implementation unless a future proposal creates
+  objective standalone ecosystem value.
+
+All current docs issues were given an explicit triage disposition. The covered
+issues were removed from `wave-ready`; remaining ideas stay on the roadmap and
+are not a proposed Wave backlog.
+
+### Reconsideration Standard
+
+Reconsider a docs application only after Gate D and at least one contracts
+application cycle are complete, and only if four independently useful issues
+remain after excluding synchronization and unimplemented-feature work. Each
+issue must still matter without a separate docs application, be bounded to one
+contributor and one pull request, include objective tests or review evidence,
+and fit the current Wave budget.
+
+Until then, docs supports the code-repository applications through public
+architecture, generated references, deployment and capability truth, security
+boundaries, reviewer instructions, and immutable evidence links. No Drips
+GitHub App installation, KYC action, repository application, points assignment,
+or issue nomination is justified for this repository.
+
+Phase 43 therefore selects its explicit non-application outcome and preserves
+the application slot.
