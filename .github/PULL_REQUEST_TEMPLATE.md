@@ -8,9 +8,9 @@ List the files or sections changed.
 
 ## Verification
 
-- [ ] `npm run lint`
-- [ ] `npm run links`
-- [ ] `npm run build`
+- [ ] `npm run check`
+- [ ] Generated files were produced by `npm run sync:generated` when applicable.
+- [ ] Deployment and capability claims identify their evidence state.
 
 ## Notes
 

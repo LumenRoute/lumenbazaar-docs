@@ -73,4 +73,8 @@ LumenBazaar is also not official Stellar Development Foundation infrastructure. 
 
 ## Documentation Status
 
-This site is built from the project plan and will become increasingly implementation-backed as the frontend, backend, contracts, and examples are delivered. Pages should separate planned behavior, local verification, testnet evidence, mainnet evidence, and conformance results.
+The version 2 contract lifecycle is proven on Stellar testnet. The exact backend and frontend release
+candidates are locally validated but not publicly deployed, and mainnet is disabled. Consult the
+[deployment matrix](/operations/deployment-matrix) before relying on any capability claim. Pages
+separate planned behavior, local verification, testnet evidence, mainnet evidence, and conformance
+results.

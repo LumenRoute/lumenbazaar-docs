@@ -9,24 +9,28 @@
     "serve": "docusaurus serve",
     "lint": "markdownlint-cli2",
     "links": "node scripts/check-links.mjs",
+    "sync:generated": "node scripts/sync-generated.mjs",
     "check:generated": "node scripts/check-generated.mjs",
     "check:content": "node scripts/check-content.mjs",
-    "check:consistency": "node scripts/check-consistency.mjs"
+    "check:consistency": "node scripts/check-consistency.mjs",
+    "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "check": "npm run lint && npm run links && npm run check:generated && npm run check:content && npm run check:consistency && npm run audit:prod && npm run build"
   },
-  "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
-    "@docusaurus/theme-mermaid": "^3.10.2",
-    "@mdx-js/react": "^3.1.0",
-    "@mermaid-js/layout-elk": "^0.1.9",
-    "clsx": "^2.1.1",
-    "prism-react-renderer": "^2.4.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "markdown-link-check": "^3.13.7",
-    "markdownlint-cli2": "^0.18.1"
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@docusaurus/theme-mermaid": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "0.55.3",
+    "@mdx-js/react": "^3.1.0",
+    "@mermaid-js/layout-elk": "0.1.9",
+    "clsx": "^2.1.1",
+    "markdown-link-check": "^3.15.0",
+    "markdownlint-cli2": "^0.23.3",
+    "open-ask-ai": "^0.7.3",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "engines": {
     "node": ">=20.0.0"

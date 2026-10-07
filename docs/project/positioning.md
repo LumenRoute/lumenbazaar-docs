@@ -18,7 +18,10 @@ LumenBazaar brings x402 to Stellar as open infrastructure: a facilitator for ver
 
 ## Long Pitch
 
-LumenBazaar is a multi-repository open-source project for machine-native commerce on Stellar. It combines a production-ready x402 facilitator, a Stellar Bazaar discovery service, an agent-facing MCP server, seller and buyer SDKs, a full web dashboard, and optional Soroban contracts for capped metered sessions.
+LumenBazaar is a multi-repository open-source project for machine-native commerce on Stellar. Its
+current release candidate combines an x402 facilitator, a Stellar Bazaar discovery service, an
+agent-facing MCP server, seller and buyer SDKs, a web dashboard, and an independently testnet-proven
+Soroban contract for capped metered sessions. The hosted exact-payment product is not yet deployed.
 
 Sellers can make APIs and MCP tools payable with Stellar assets. Buyers and agents can search discoverable resources, understand price and input schemas, authorize payment, retry the original request, and receive settlement receipts.
 

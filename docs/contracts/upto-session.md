@@ -17,7 +17,7 @@ Use `upto-session` for:
 ## Public Interface
 
 ```rust
-initialize(admin: Address)
+initialize(admin: Address, supported_assets: Vec<Address>)
 
 create_session(
     buyer: Address,
@@ -39,6 +39,10 @@ cancel(session_id: BytesN<32>)
 get_session(session_id: BytesN<32>) -> Session
 
 extend_ttl(session_id: BytesN<32>)
+
+recover_expired(session_id: BytesN<32>)
+
+interface_version() -> u32
 ```
 
 ## Session Type
@@ -60,7 +64,7 @@ Session {
 
 ## `initialize`
 
-Stores contract admin configuration.
+Stores contract admin configuration and the initial supported-asset allowlist.
 
 Requirements:
 
@@ -133,6 +137,17 @@ Returns current session state by ID. Backend services use this to inspect capped
 
 Extends contract storage TTL safely for active sessions. TTL behavior must be documented with resource usage expectations and tests.
 
+## `recover_expired`
+
+Allows any caller to recover an expired open session. The escrowed balance is refunded to the buyer;
+the caller never receives funds. Recovery fails before expiry and cannot replay after the session
+becomes terminal.
+
+## `interface_version`
+
+Returns `2` for this release. Consumers must reject an unexpected interface version before submitting
+state-changing calls.
+
 ## Contract Guarantees
 
 The contract must guarantee:
@@ -162,18 +177,31 @@ AmountExceedsCap
 InvalidAsset
 InvalidSeller
 TtlExtensionFailed
+InvalidResourceHash
+InvalidUsageHash
+UnsupportedAsset
+InvalidSupportedAssets
+SessionDurationTooLong
+LiabilityOverflow
+LiabilityUnderflow
+EscrowUnderfunded
+NotInitialized
+SessionExpired
+SessionNotExpired
 ```
 
 ## Events
 
-The contract should emit stable events for:
+The released version 2 interface emits stable events for:
 
-- Session creation.
-- Settlement.
-- Cancellation.
-- TTL extension if useful for operators.
+- `SessionCreated`.
+- `SessionSettled`.
+- `SessionCancelled`.
+- `SessionRecovered`.
 
-Events should include session ID and enough indexed values for backend reconciliation.
+Each event includes `event_version = 2`, a session ID topic, and typed reconciliation fields recorded
+in `generated/contracts/upto-session.interface.json`. Live examples are in
+`generated/contracts/testnet-lifecycle.json`.
 
 ## Required Tests
 
@@ -195,7 +223,7 @@ Contract tests should cover:
 
 ## Generated Artifacts
 
-The contracts repo should publish:
+The pinned contract release publishes:
 
 - Contract ABI/spec files.
 - TypeScript bindings where applicable.
@@ -203,4 +231,6 @@ The contracts repo should publish:
 - Gas/resource usage notes.
 - Security limitations.
 
-The backend should consume generated bindings instead of hand-typing the contract interface.
+The imported binding, spec, interface, deployment manifest, and lifecycle fixture are stored under
+`generated/contracts/` and checksummed by `generated/manifest.json`. The backend should consume the
+generated binding instead of hand-typing the contract interface.

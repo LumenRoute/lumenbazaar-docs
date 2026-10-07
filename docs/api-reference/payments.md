@@ -1,6 +1,8 @@
 # Payments API Reference
 
-The payments API exposes payment attempts, settlements, and receipts for buyers, sellers, operators, and reviewers.
+The released backend persists payment attempts, settlements, and receipts, but its public HTTP
+surface exposes verification, settlement, and receipt lookup only. It does not currently expose
+payment-attempt or settlement collection/detail endpoints.
 
 Base path:
 
@@ -8,165 +10,65 @@ Base path:
 /v1
 ```
 
-## Payment Attempt Object
+## Verify And Settle
 
-```json
-{
-  "id": "pay_123",
-  "resourceId": "resource_123",
-  "sellerId": "seller_123",
-  "paymentHash": "hash_123",
-  "network": "stellar:testnet",
-  "assetCode": "USDC",
-  "assetIssuer": "G...",
-  "amount": "0.05",
-  "payTo": "G...",
-  "status": "verified",
-  "failureCode": null,
-  "failureReason": null,
-  "expiresAtLedger": 123456,
-  "createdAt": "2026-09-03T00:00:00.000Z",
-  "updatedAt": "2026-09-03T00:00:00.000Z"
-}
-```
-
-## Settlement Object
-
-```json
-{
-  "id": "set_123",
-  "paymentAttemptId": "pay_123",
-  "transactionHash": "tx_hash",
-  "ledger": 123460,
-  "network": "stellar:testnet",
-  "amount": "0.05",
-  "assetCode": "USDC",
-  "assetIssuer": "G...",
-  "status": "settled",
-  "settledAt": "2026-09-03T00:00:00.000Z",
-  "createdAt": "2026-09-03T00:00:00.000Z"
-}
-```
-
-## Receipt Object
-
-```json
-{
-  "id": "receipt_123",
-  "paymentAttemptId": "pay_123",
-  "settlementId": "set_123",
-  "resourceId": "resource_123",
-  "sellerId": "seller_123",
-  "transactionHash": "tx_hash",
-  "ledger": 123460,
-  "network": "stellar:testnet",
-  "amount": "0.05",
-  "assetCode": "USDC",
-  "assetIssuer": "G...",
-  "status": "settled",
-  "failureCode": null,
-  "failureReason": null
-}
-```
-
-## List Payments
+The canonical x402 v2 endpoints are documented in the
+[facilitator reference](./facilitator.md):
 
 ```txt
-GET /v1/payments
+POST /v1/verify
+POST /v1/settle
 ```
 
-Query parameters:
-
-| Parameter | Description |
-| --- | --- |
-| `resourceId` | Filter by resource. |
-| `sellerId` | Filter by seller. |
-| `network` | Filter by Stellar network. |
-| `asset` | Filter by asset code. |
-| `status` | Filter by payment attempt status. |
-| `cursor` | Pagination cursor. |
-| `limit` | Page size. |
-
-## Get Payment
-
-```txt
-GET /v1/payments/:paymentId
-```
-
-Returns one payment attempt and associated settlement or receipt links.
-
-## Get Settlement
-
-```txt
-GET /v1/settlements/:transactionHash
-```
-
-Returns settlement details by transaction hash.
-
-This endpoint is useful for operators and reviewers who start from on-chain evidence.
+Both accept the released x402 payment payload. A successful verification response includes durable
+LumenBazaar attempt and correlation identifiers under its extension data. A successful settlement
+response includes the transaction hash and receipt identifier needed for recovery.
 
 ## Get Receipt
 
 ```txt
-GET /v1/receipts/:receiptId
+GET /v1/receipts/{receiptId}
 ```
 
-Returns receipt details by receipt ID.
+Returns one durable receipt by ID. The released receipt record contains:
 
-Receipts are the primary evidence object for completed paid resource calls.
+- `id`, `correlationId`, and `paymentAttemptId`.
+- Nullable `resourceId` and `sellerId`.
+- Nullable `transactionHash`, `ledger`, and `settledAt` while finality is pending.
+- `network`, atomic `amount`, `assetCode`, and `assetIssuer`.
+- `status`, nullable `failureCode`, and nullable `failureReason`.
+- `evidenceHash`, `createdAt`, and `updatedAt`.
 
-## Status Values
+Receipts are the public evidence object for completed or recoverable paid resource calls. Compare a
+finalized receipt's transaction hash and ledger with Stellar testnet before treating it as settlement
+evidence.
 
-Payment attempts may use:
+## Unavailable Collection Endpoints
+
+The Phase 24 OpenAPI does not define these routes:
 
 ```txt
-created
-verified
-verification_failed
-settlement_pending
-settled
-settlement_failed
-expired
-replayed
-cancelled
+GET /v1/payments
+GET /v1/payments/{paymentId}
+GET /v1/settlements/{transactionHash}
+GET /v1/sellers/{sellerId}/payments
 ```
 
-The final enum should be generated from backend schemas when available.
+Clients and operator pages must report that capability as unavailable. They must not substitute demo
+fixtures or infer these records from screenshots. These routes remain future work until they appear
+in a pinned generated OpenAPI artifact.
 
-## Failure Codes
+## Status And Failure Evidence
 
-Payment, settlement, and receipt endpoints should expose:
+Database status values are internal implementation detail unless returned by a released endpoint.
+Clients must preserve unknown values and use the response's structured error code instead of
+guessing finality from an HTTP message.
 
-```txt
-UNSUPPORTED_NETWORK
-UNSUPPORTED_ASSET
-INVALID_PAYMENT_PAYLOAD
-INVALID_SIGNATURE
-AUTH_EXPIRED
-REPLAY_DETECTED
-AMOUNT_MISMATCH
-ASSET_MISMATCH
-RECIPIENT_MISMATCH
-SETTLEMENT_FAILED
-TRUSTLINE_REQUIRED
-RATE_LIMITED
-INTERNAL_ERROR
-```
+Receipts and transaction hashes are settlement evidence. Local simulation, testnet verification,
+testnet settlement, pending outcomes, and failed outcomes must remain visibly distinct. No testnet
+receipt is mainnet evidence.
 
-## Evidence Rules
+## Generated Source
 
-Receipts and transaction hashes are settlement evidence. UI screenshots are not conformance proof.
-
-Docs should label:
-
-- Local simulation.
-- Testnet verification.
-- Testnet settlement.
-- Mainnet verification.
-- Mainnet settlement.
-- Failed settlement.
-- Pending settlement.
-
-## Privacy Notes
-
-Payment APIs should not expose private keys, seed phrases, bearer tokens, or sensitive wallet metadata. Buyer identity should be public only when intentionally supported and authorized.
+The exact released path and response declaration is in
+`generated/openapi/openapi.json`, pinned and checksummed by `generated/manifest.json`.

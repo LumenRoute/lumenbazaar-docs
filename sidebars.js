@@ -34,6 +34,7 @@ const sidebars = {
         'guides/buyer-guide',
         'guides/agent-guide',
         'guides/operator-guide',
+        'guides/reviewer-quickstart',
         'guides/testnet-guide',
         'guides/mainnet-guide',
       ],
@@ -90,6 +91,7 @@ const sidebars = {
       label: 'Operations',
       items: [
         'operations/self-hosting',
+        'operations/deployment-matrix',
         'operations/monitoring',
         'operations/incident-response',
         'operations/runbook',
@@ -103,6 +105,12 @@ const sidebars = {
       items: [
         'funding/scf-rfp-proposal',
         'funding/drips-plan',
+        'funding/drips-readiness-ledger',
+        'funding/contracts-wave-backlog',
+        'funding/contracts-application-evidence',
+        'funding/contracts-application-status',
+        'funding/wave-operations-ledger',
+        'funding/repository-application-gates',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',

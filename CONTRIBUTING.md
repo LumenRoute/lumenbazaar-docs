@@ -12,9 +12,8 @@ LumenBazaar docs changes should be small, reviewable, and tied to a clear projec
 ## Local Checks
 
 ```bash
-npm run lint
-npm run links
-npm run build
+npm ci
+npm run check
 ```
 
 ## Content Standards

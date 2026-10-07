@@ -152,7 +152,7 @@ Operators should provide:
 Every audit package should include known limitations. Examples:
 
 - Mainnet not enabled yet.
-- `Upto` contract not deployed yet.
+- `Upto` contract is testnet-deployed, but backend integration remains disabled.
 - Search ranking still using PostgreSQL full-text search.
 - MCP paid-call proxy still testnet-only.
 - External x402 discovery conventions may evolve.

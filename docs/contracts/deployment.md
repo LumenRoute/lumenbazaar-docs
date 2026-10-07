@@ -1,162 +1,77 @@
 # Contract Deployment
 
-This page defines how the contracts repo should document local and testnet deployment for LumenBazaar Soroban contracts.
+The `upto-session` version 2 contract is deployed on Stellar testnet. Mainnet remains disabled.
 
-Mainnet deployment is intentionally gated and should not happen until tests, generated artifacts, security review decisions, and operational sign-off are complete.
+## Released Testnet Contract
 
-## Contracts
+| Field | Value |
+| --- | --- |
+| Release | `v0.2.0-testnet.20261007` |
+| Release commit | `10460b5740a42def0e00fd03800b6d2ddf15d8ae` |
+| Implementation source commit | `41940839d8f49c733b1815e108fc9740b1285f32` |
+| Network | Stellar testnet |
+| Contract ID | `CCENNI5ZMMD3DCJXG5MURDXWUU3NG6JCFHDCDSEI4OMNWDJRY2IR36L3` |
+| WASM SHA-256 | `121431386fedf8149476cbcd79740c242101286520d16456bce5affa7a0a2241` |
+| Interface version | `2` |
+| Asset | `LBT`, custom test-only token; not USDC |
 
-The contracts repo should contain:
+The [deployment matrix](/operations/deployment-matrix) links the contract, upload, deployment,
+initialization, settlement, and recovery evidence. The checksummed source manifests are
+`generated/contracts/testnet-deployment.json` and `generated/contracts/testnet-lifecycle.json`.
 
-```txt
-contracts/
-  upto-session/
-  policy-wallet-example/
-  test-token/
+## Contract Scope
+
+Only `upto-session` is part of the capped metered payment design. The `policy-wallet-example` is an
+unaudited smart-account example, and `test-token` is test infrastructure. Neither is production
+wallet or asset infrastructure.
+
+The current lifecycle proves:
+
+- Escrow funding at session creation.
+- Seller-authorized partial settlement with buyer refund.
+- Buyer cancellation and full refund.
+- Permissionless expiry recovery that refunds only the buyer.
+- Rejection of unauthorized, over-cap, cross-session, duplicate, and invalid terminal operations.
+- Versioned creation, settlement, cancellation, and recovery events.
+
+## Local Verification
+
+From a clean contracts checkout at the release commit, use the commands published by that
+repository:
+
+```bash
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+cargo test --workspace --all-features
+stellar contract build --locked
+node scripts/smoke-upto-session-bindings.mjs
+node scripts/check-deployment-evidence.mjs
 ```
 
-Only `upto-session` is part of the core capped metered payment path. `policy-wallet-example` is an example only, and `test-token` is for local or test support.
+These commands prove source, build, binding, and evidence consistency. They do not create a new live
+deployment.
 
-## Local Deployment
+## Imported Artifacts
 
-Local deployment should prove the contract can be built, deployed, initialized, and exercised without relying on public network state.
+The docs repository imports and checksums:
 
-Expected local commands should cover:
+- Decoded contract XDR spec.
+- TypeScript binding containing the encoded contract spec.
+- Versioned method, event, field, and error interface.
+- Testnet deployment manifest and WASM hash.
+- Testnet lifecycle and rejection evidence.
 
-```txt
-cargo test
-stellar contract build
-stellar contract deploy
-stellar contract invoke -- initialize
-stellar contract invoke -- create_session
-stellar contract invoke -- get_session
-stellar contract invoke -- settle
-stellar contract invoke -- cancel
-stellar contract invoke -- extend_ttl
-```
+Run `npm run sync:generated` and `npm run check:generated` to reproduce the import from the pinned
+Git revisions.
 
-The exact commands should be generated from the contracts repo after the contract scaffold exists.
+## Backend Boundary
 
-## Test Token
+The deployed contract proves the independent `upto` lifecycle only. The Phase 24 backend release
+candidate advertises `upto: false`; its active payment product is x402 v2 `exact`. No docs page should
+infer backend integration merely from the contract deployment.
 
-If local tests require a token contract, deploy `test-token` separately.
+## Mainnet Gate
 
-The docs should make clear:
-
-- Test token is not production infrastructure.
-- Test token state should not be confused with real USDC.
-- Local test token addresses are environment-specific.
-
-## Testnet Deployment
-
-Testnet deployment should happen only after:
-
-- `cargo test` passes.
-- Contract build succeeds.
-- ABI/spec files are generated.
-- TypeScript bindings are generated if used by backend.
-- Local deployment smoke test passes.
-- Security limitations are documented.
-
-Testnet deployment should record:
-
-- Network.
-- Deployer public address.
-- Contract ID.
-- Commit SHA.
-- Build command.
-- Deployment command.
-- Initialization transaction hash.
-- Contract spec artifact path.
-- Binding artifact path.
-
-## Contract ID Record
-
-Contract IDs should be recorded in a structured table.
-
-| Network | Contract | Contract ID | Commit | Status |
-| --- | --- | --- | --- | --- |
-| local | `upto-session` | TBD | TBD | development |
-| testnet | `upto-session` | TBD | TBD | pending |
-| mainnet | `upto-session` | TBD | TBD | gated |
-
-Mainnet rows should stay `gated` until launch requirements are complete.
-
-## Generated Artifacts
-
-The contracts repo should publish:
-
-- ABI/spec files.
-- TypeScript bindings.
-- Deployment logs with secrets removed.
-- Contract ID records.
-- Gas/resource usage notes.
-
-The docs repo should import generated artifacts into:
-
-```txt
-generated/contracts/
-```
-
-Generated reference docs should be checked in CI so contract docs do not drift from source.
-
-## Resource Usage
-
-Document resource usage for:
-
-- `create_session`
-- `settle`
-- `cancel`
-- `get_session`
-- `extend_ttl`
-
-For each function, record:
-
-- Network.
-- Contract version.
-- Ledger or simulation context.
-- CPU instructions where available.
-- Memory where available.
-- Storage changes.
-- Transaction fee where available.
-
-## TTL Strategy
-
-The deployment docs should explain:
-
-- Which storage entries need TTL extension.
-- When `extend_ttl` should be called.
-- Who is allowed to extend TTL.
-- What happens after expiry.
-- How storage cleanup affects receipts and backend records.
-
-## Backend Handoff
-
-After testnet deployment, the contracts repo should provide the backend repo with:
-
-- Contract ID.
-- ABI/spec files.
-- TypeScript bindings.
-- Network configuration.
-- Function names and parameter types.
-- Error codes.
-- Event shapes.
-- Example session IDs.
-- Example usage hashes.
-
-The backend should consume generated bindings, not hand-written guesses.
-
-## Mainnet Deployment Gate
-
-Mainnet deployment requires:
-
-- Completed local and testnet tests.
-- Documented testnet contract ID.
-- Generated artifacts reviewed.
-- Gas/resource usage documented.
-- Security checklist complete.
-- Audit readiness package complete.
-- Operator sign-off.
-- Incident response and rollback procedures.
-
-Mainnet deployment should not be presented as complete until contract IDs and transaction evidence are recorded.
+There is no mainnet contract ID. Mainnet deployment requires an explicit asset/liquidity decision,
+security review, reproducible release, operational monitoring, incident response, and recorded
+transactions. Testnet IDs and LBT evidence must never be copied into a mainnet configuration.

@@ -61,6 +61,7 @@ Creates a seller-owned resource. The backend should validate ownership, schema, 
 
 Required fields:
 
+- `id`
 - `sellerId`
 - `type`
 - `name`
@@ -74,11 +75,13 @@ Required fields:
 - `amount`
 - `inputSchema`
 - `outputSchema`
+- `extensions`
+- `status`
 
 ## Get Resource
 
 ```txt
-GET /v1/resources/:id
+GET /v1/resources/{id}
 ```
 
 Returns a single resource, including current payment requirements, schemas, extensions, seller trust state, and public settlement metadata where available.
@@ -86,7 +89,7 @@ Returns a single resource, including current payment requirements, schemas, exte
 ## Update Resource
 
 ```txt
-PATCH /v1/resources/:id
+PATCH /v1/resources/{id}
 ```
 
 Updates a resource and creates a new resource version when metadata, price, schema, route, or payment terms change.
@@ -96,7 +99,7 @@ Resource updates should preserve history so previous receipts remain explainable
 ## Delete Resource
 
 ```txt
-DELETE /v1/resources/:id
+DELETE /v1/resources/{id}
 ```
 
 Deletes or disables a resource depending on implementation policy. Prefer soft deletion for resources with historical payment attempts or receipts.
@@ -132,7 +135,7 @@ Required fields:
 ## Get Seller
 
 ```txt
-GET /v1/sellers/:sellerId
+GET /v1/sellers/{sellerId}
 ```
 
 Returns seller profile and verification state.
@@ -140,7 +143,7 @@ Returns seller profile and verification state.
 ## Verify Seller Domain
 
 ```txt
-POST /v1/sellers/:sellerId/verify-domain
+POST /v1/sellers/{sellerId}/verify-domain
 ```
 
 Creates or checks a domain verification challenge. Supported challenge methods should be documented by the backend response.
@@ -148,18 +151,25 @@ Creates or checks a domain verification challenge. Supported challenge methods s
 ## Seller Resources
 
 ```txt
-GET /v1/sellers/:sellerId/resources
+GET /v1/sellers/{sellerId}/resources
 ```
 
 Returns resources owned by a seller.
 
-## Seller Payments
+## Seller Payments Are Not Exposed
 
 ```txt
-GET /v1/sellers/:sellerId/payments
+GET /v1/sellers/{sellerId}/payments
 ```
 
-Returns payment attempts and settlements for a seller.
+This route is not present in the pinned Phase 24 OpenAPI. Operator and seller interfaces must report
+the capability as unavailable rather than rendering fixture payments. It remains planned until a
+later generated artifact defines it.
+
+## Generated Source
+
+The exact released methods and schemas are in `generated/openapi/openapi.json`, pinned and
+checksummed by `generated/manifest.json`.
 
 ## Error Codes
 
