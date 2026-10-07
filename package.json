@@ -9,6 +9,7 @@
     "serve": "docusaurus serve",
     "lint": "markdownlint-cli2",
     "links": "node scripts/check-links.mjs",
+    "sync:generated": "node scripts/sync-generated.mjs",
     "check:generated": "node scripts/check-generated.mjs",
     "check:content": "node scripts/check-content.mjs",
     "check:consistency": "node scripts/check-consistency.mjs",

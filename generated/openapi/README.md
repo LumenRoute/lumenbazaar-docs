@@ -1,27 +1,11 @@
-# Generated Reference Status
+# Generated OpenAPI Reference
 
 Source Repository: `lumenbazaar-backend`
 
-This folder will hold generated OpenAPI artifacts from the backend repository.
+The machine-readable and Markdown references in this directory are copied from backend commit
+`46379592d0912cd2efc7885119d95715ea86608c`. That commit is the Phase 24 release candidate, but it
+has not been deployed; these files describe released source behavior, not a live endpoint.
 
-Expected artifacts:
-
-- Facilitator API reference.
-- Discovery API reference.
-- Resource API reference.
-- Payment and receipt API reference.
-- Conformance API reference.
-
-## Current Status
-
-The backend implementation has not published generated OpenAPI output yet. Existing API reference pages describe the intended contract from the project documentation and should be checked against generated output once available.
-
-## Sync Rule
-
-Generated OpenAPI artifacts must include:
-
-- Source backend commit.
-- Generation command.
-- Generation date.
-- API version.
-- Known limitations.
+The source generation command is `pnpm openapi:generate`. Run `npm run sync:generated` from this
+repository to extract the pinned files, then `npm run check:generated` to verify their checksums and
+required endpoint surface. Provenance and SHA-256 values are in `generated/manifest.json`.

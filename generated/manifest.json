@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-07T17:22:45+01:00",
+  "repositories": {
+    "backend": {
+      "commit": "46379592d0912cd2efc7885119d95715ea86608c",
+      "generationCommand": "pnpm openapi:generate",
+      "release": "Phase 24 pinned release candidate (not deployed)",
+      "url": "https://github.com/LumenRoute/lumenbazaar-backend"
+    },
+    "contracts": {
+      "commit": "10460b5740a42def0e00fd03800b6d2ddf15d8ae",
+      "generationCommand": "pnpm artifacts:generate && pnpm bindings:generate",
+      "release": "v0.2.0-testnet.20261007",
+      "url": "https://github.com/LumenRoute/lumenbazaar-contracts"
+    }
+  },
+  "files": [
+    {
+      "destination": "generated/openapi/openapi.json",
+      "repository": "backend",
+      "sha256": "58a29ff4277a71f4a2e1a0662d95af3ad489bab3300c2d90d409f397c42bee8a",
+      "sourcePath": "docs/api/openapi.json"
+    },
+    {
+      "destination": "generated/openapi/openapi.md",
+      "repository": "backend",
+      "sha256": "fbb8086c21aa56c9bdfcbab264d64f936720be59c0301f1092e9335ac6e52466",
+      "sourcePath": "docs/api/openapi.md"
+    },
+    {
+      "destination": "generated/contracts/upto-session.spec.json",
+      "repository": "contracts",
+      "sha256": "67ed1207b47164340dd63126c21dbd9cd60967e4c3acd8e8973391232e4450a4",
+      "sourcePath": "artifacts/spec/upto-session.json"
+    },
+    {
+      "destination": "generated/contracts/upto-session.ts",
+      "repository": "contracts",
+      "sha256": "962b1cdb23f45c51575a847c461c1ab030a08377353ed19e320eca25005d6a79",
+      "sourcePath": "bindings/upto-session/src/index.ts"
+    },
+    {
+      "destination": "generated/contracts/upto-session.interface.json",
+      "repository": "contracts",
+      "sha256": "afb9490a9f7cd1a4fdc725de8503cef7d580aa39fcc7cc69ec37de3a22fe6e26",
+      "sourcePath": "artifacts/interface/upto-session-v2.json"
+    },
+    {
+      "destination": "generated/contracts/testnet-lifecycle.json",
+      "repository": "contracts",
+      "sha256": "25c0f4cbb888f4fda97996ecc181347c076740f19adab36d63717139ef20637a",
+      "sourcePath": "artifacts/testnet/lifecycle-2026-10-07.json"
+    },
+    {
+      "destination": "generated/contracts/testnet-deployment.json",
+      "repository": "contracts",
+      "sha256": "c532abd8ca0d83ababa7340a264cb707b97f559169c491d226b3b7b47b4b1a03",
+      "sourcePath": "deployments/testnet-2026-10-07.json"
+    }
+  ]
+}
