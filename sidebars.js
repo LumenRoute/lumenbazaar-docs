@@ -34,6 +34,7 @@ const sidebars = {
         'guides/buyer-guide',
         'guides/agent-guide',
         'guides/operator-guide',
+        'guides/reviewer-quickstart',
         'guides/testnet-guide',
         'guides/mainnet-guide',
       ],

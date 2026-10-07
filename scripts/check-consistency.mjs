@@ -21,6 +21,7 @@ const requiredFiles = [
   'docs/guides/buyer-guide.md',
   'docs/guides/agent-guide.md',
   'docs/guides/operator-guide.md',
+  'docs/guides/reviewer-quickstart.md',
   'docs/guides/testnet-guide.md',
   'docs/guides/mainnet-guide.md',
   'docs/security/threat-model.md',
@@ -83,6 +84,8 @@ requireText('docs/architecture/trust-model.md', 'The facilitator verifies and se
 requireText('docs/architecture/trust-model.md', 'The two payment schemes have different trust and funding boundaries:');
 requireText('docs/architecture/repository-map.md', 'LumenBazaar is split into four public repositories under the `LumenRoute` GitHub organization.');
 requireText('docs/funding/tranche-evidence.md', 'Testnet transaction hashes are not mainnet evidence.');
+requireText('docs/guides/reviewer-quickstart.md', 'Gate D remains open.');
+requireText('docs/guides/reviewer-quickstart.md', 'Never set or echo the signing key');
 requireText('docs/operations/deployment-matrix.md', 'No deployment of this revision');
 requireText('docs/operations/deployment-matrix.md', 'Mainnet | Disabled');
 requireText('docs/contracts/deployment.md', 'CCENNI5ZMMD3DCJXG5MURDXWUU3NG6JCFHDCDSEI4OMNWDJRY2IR36L3');

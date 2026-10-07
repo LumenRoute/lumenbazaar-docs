@@ -40,10 +40,12 @@ From a clean contracts checkout at the release commit, use the commands publishe
 repository:
 
 ```bash
-pnpm check
-pnpm wasm:repro
-pnpm bindings:smoke
-pnpm deployment:evidence
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+cargo test --workspace --all-features
+stellar contract build --locked
+node scripts/smoke-upto-session-bindings.mjs
+node scripts/check-deployment-evidence.mjs
 ```
 
 These commands prove source, build, binding, and evidence consistency. They do not create a new live
