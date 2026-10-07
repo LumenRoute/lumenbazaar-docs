@@ -103,6 +103,7 @@ const sidebars = {
       items: [
         'funding/scf-rfp-proposal',
         'funding/drips-plan',
+        'funding/drips-readiness-ledger',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
