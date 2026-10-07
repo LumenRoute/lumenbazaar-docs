@@ -106,6 +106,7 @@ const sidebars = {
         'funding/scf-rfp-proposal',
         'funding/drips-plan',
         'funding/drips-readiness-ledger',
+        'funding/contracts-wave-backlog',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
