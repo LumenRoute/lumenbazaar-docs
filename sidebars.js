@@ -109,6 +109,7 @@ const sidebars = {
         'funding/contracts-wave-backlog',
         'funding/contracts-application-evidence',
         'funding/contracts-application-status',
+        'funding/wave-operations-ledger',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
