@@ -110,6 +110,7 @@ const sidebars = {
         'funding/contracts-application-evidence',
         'funding/contracts-application-status',
         'funding/wave-operations-ledger',
+        'funding/repository-application-gates',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
