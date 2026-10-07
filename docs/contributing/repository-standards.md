@@ -51,7 +51,8 @@ Every README should include:
 
 ## License
 
-Use Apache-2.0 unless maintainers explicitly decide otherwise.
+Use the repository's committed root `LICENSE`. Do not copy another LumenBazaar repository's license
+text or assume all four repositories use the same license.
 
 Avoid dependencies that create license conflicts with permissive infrastructure use.
 

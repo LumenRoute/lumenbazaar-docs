@@ -31,6 +31,19 @@ The facilitator verifies and settles authorized payment payloads. It does not ho
 
 Documentation, APIs, logs, examples, and screenshots must never include private keys, seed phrases, bearer tokens, or live credentials.
 
+## Funding Designs
+
+The two payment schemes have different trust and funding boundaries:
+
+| Scheme | Funding and authorization | Live state |
+| --- | --- | --- |
+| x402 v2 `exact` | The buyer wallet signs the x402 Stellar exact authorization. The facilitator verifies fixed network, asset, atomic amount, recipient, expiry, and replay state, then submits the authorized transaction. LumenBazaar never holds buyer funds or signs as the buyer. | Implemented and locally validated in the pinned backend/frontend release candidates; not publicly deployed. |
+| Contract `upto` | `create_session` transfers the buyer-approved cap into contract escrow. The seller may settle only actual usage up to the cap; cancellation or permissionless expiry recovery refunds the buyer. | Publicly proven on Stellar testnet with LBT; backend integration remains disabled. |
+
+The facilitator signer pays or sponsors transaction submission costs where configured; it is not the
+source of the buyer's payment amount. Fee sponsorship, exact settlement, and contract escrow must not
+be described as interchangeable custody models.
+
 ## Seller Metadata Trust
 
 Seller metadata should not be trusted just because it is submitted. A trusted catalog entry requires validation:
@@ -115,6 +128,9 @@ Operators should track:
 - Safe TTL extension.
 
 The policy wallet example is not production wallet infrastructure. It exists to demonstrate smart account spending constraints for agents.
+
+The testnet contract uses a custom LBT test token. It does not prove USDC configuration, liquidity,
+trustlines, or mainnet readiness.
 
 ## Evidence Rules
 

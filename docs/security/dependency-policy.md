@@ -4,13 +4,13 @@ LumenBazaar should remain permissively licensed and practical for self-hosted op
 
 ## License Policy
 
-Recommended project license:
+Each repository's root `LICENSE` is authoritative. The frontend, backend, and contracts repositories
+currently use MIT; the docs repository uses Apache-2.0. The contracts crate metadata also permits
+`MIT OR Apache-2.0`, but that metadata does not override the repository's root license notice.
 
-```txt
-Apache-2.0
-```
-
-Apache-2.0 is suitable because it is familiar for infrastructure, compatible with broad commercial and open-source use, and practical for SDKs and service operators.
+This documentation does not impose one license across all four repositories and must not describe
+the whole project as Apache-2.0. A future license change requires maintainer and contributor review;
+it is not a dependency-maintenance operation.
 
 ## Avoided Dependency Classes
 

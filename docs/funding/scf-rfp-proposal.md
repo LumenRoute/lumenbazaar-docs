@@ -152,7 +152,9 @@ Suggested budget categories:
 
 ## Open-Source Plan
 
-LumenBazaar should be public, self-hostable, and Apache-2.0 licensed. Each repository should include repository standards, issue templates, PR templates, contributor guides, security policy, and CI.
+LumenBazaar should be public and self-hostable under each repository's permissive root license. Each
+repository should include repository standards, issue templates, PR templates, contributor guides,
+security policy, and CI.
 
 Drips should be used to coordinate scoped contributor issues.
 

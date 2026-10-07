@@ -32,7 +32,8 @@ Operators should be able to run their own facilitator and discovery index.
 
 LumenBazaar should not require AGPL or strong copyleft infrastructure in the core facilitator dependency path.
 
-The intended license is Apache-2.0. Dependencies should support permissive redistribution and commercial or self-hosted operation.
+Each repository's committed root license is authoritative. Dependencies should support permissive
+redistribution and commercial or self-hosted operation.
 
 ## Ecosystem Claims
 

@@ -90,6 +90,7 @@ const sidebars = {
       label: 'Operations',
       items: [
         'operations/self-hosting',
+        'operations/deployment-matrix',
         'operations/monitoring',
         'operations/incident-response',
         'operations/runbook',

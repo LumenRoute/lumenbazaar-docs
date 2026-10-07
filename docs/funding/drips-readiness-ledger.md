@@ -57,9 +57,14 @@ The public probes below were repeated on October 7, 2026.
 | Matrix entry | Frontend | Backend | Contracts | Docs | Highest common evidence | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | `baseline-2026-10-07` | `4648d3b` | `f2fa194` | `fe15b32` | `1639638` | `ci` | Incompatible as a complete payment product: exact is disabled, `upto` authorization is unproven, and public docs are stale. |
+| `remediation-candidate-2026-10-07` | `dc41e2c` | `4637959` | `10460b5` | `d48d595` plus current docs phases | Contract: `testnet-proven`; other repositories: `local` | Contract escrow lifecycle is public. Backend and frontend exact flow is locally validated but not deployed, so Gates B-D remain open. |
 
 Add a new immutable row for every release candidate. Never overwrite a prior row
 to make a newer combination appear historically compatible.
+
+The current component-by-component truth and the replacement testnet contract ID are maintained in
+the [deployment and capability matrix](/operations/deployment-matrix). The deployment baseline above
+is retained as a dated historical observation and must not be used as current configuration.
 
 ## Blocking Findings And Ownership
 
