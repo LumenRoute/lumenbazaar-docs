@@ -75,3 +75,78 @@ production state, placeholder endpoints, disabled readiness, an unpublished
 signer, or a deployment that cannot recover the same receipt after restart.
 Gate B remains open, so Phase 41 is not complete and the backend must not be
 submitted.
+
+## Frontend Repository
+
+Decision: blocked on Gates B and C.
+
+The current protected candidate is frontend
+[PR #29](https://github.com/LumenRoute/lumenbazaar-frontend/pull/29) at
+`4afb04fb257bea973657be2eecad100b062e9d15`. Its required
+[`check` job](https://github.com/LumenRoute/lumenbazaar-frontend/actions/runs/37675002827/job/112976106978)
+passed and its pull request has a Vercel preview. Neither result proves a live
+payment: the deterministic release suite uses a Freighter protocol stub and a
+simulated paid-resource response, while the no-interception live suite requires
+a deployed backend, resource ID, and real Freighter test profile.
+
+### Gate C Proof Required
+
+A logged-out independent reviewer must complete the same pinned x402 v2 exact
+flow proven by Gate B on both desktop and mobile:
+
+1. Load the public testnet UI and confirm its frontend commit, backend commit,
+   network, and non-demo runtime mode.
+2. Discover the real paid resource and compare asset, issuer, atomic amount,
+   recipient, resource URL, and expiry before signing.
+3. Connect a fresh, minimally funded Freighter testnet wallet and authorize the
+   displayed canonical challenge once.
+4. Observe paid retry, verification, settlement submission, an explicit
+   pending or unknown state where applicable, and a finalized durable receipt.
+5. Open the Stellar testnet transaction, compare its hash and ledger with the
+   receipt, reload, and recover the same receipt without another payment.
+6. Repeat focused tests for rejected signature, signing timeout, wrong network,
+   backend outage, a pending settlement, and an already completed payment.
+7. Run the production dependency review and accessibility checks against the
+   release candidate.
+
+The live browser test must make no request interception and must not succeed
+through fixtures, explicit demo mode, a wallet draft, synthetic identifiers, a
+v1 payload, or an intercepted success response. Desktop/mobile local suites are
+supporting regression evidence only.
+
+### Candidate Contributor Set
+
+These issues are independent improvements suitable for reconsideration only
+after Gates B and C pass. They are not program nominations.
+
+| Issue | Independent post-readiness outcome | Complexity |
+| --- | --- | --- |
+| [#9: Trustline and balance preflight](https://github.com/LumenRoute/lumenbazaar-frontend/issues/9) | Distinguish missing trustline, insufficient balance, and network failure without creating assets or permitting unsafe signing. | Medium |
+| [#13: API outage and recovery tests](https://github.com/LumenRoute/lumenbazaar-frontend/issues/13) | Prove critical routes recover without substituting fixture data or losing accessible status. | High |
+| [#18: Payment and wallet WCAG 2.1 AA audit](https://github.com/LumenRoute/lumenbazaar-frontend/issues/18) | Add keyboard, focus, announcement, contrast, reduced-motion, automated, and manual evidence for payment surfaces. | Medium |
+| [#20: Payment-critical error boundaries](https://github.com/LumenRoute/lumenbazaar-frontend/issues/20) | Provide accessible, idempotent recovery for unexpected route failures without reporting payment success. | Medium |
+
+Immediately before application, verify each issue remains unimplemented,
+bounded to one contributor and one pull request, objectively testable, and
+independent of the other candidates. Complexity and points must be assigned in
+the Drips dashboard only after repository approval and current budget review.
+
+### Frontend Evidence And Maintainers
+
+The future application pack must pin the merged release and public URL, exact
+frontend and backend commits, protected CI, production dependency review,
+desktop/mobile live run, wallet failure cases, paid transaction, durable
+receipt, reload recovery, explorer link, accessibility evidence, selected
+issues, and explicit demo boundaries. Every public claim must resolve while
+logged out and refer to the same release.
+
+Maintainer ownership, daily review windows, response target, backup coverage,
+and two-way review commitment remain unconfirmed. No KYC, GitHub App,
+repository application, or issue nomination should occur from this record.
+
+### Frontend Stop Conditions
+
+Do not apply while the live UI can succeed through fixtures, a wallet draft,
+interception, synthetic transaction evidence, or a v1 payload. Do not apply
+before the backend is itself eligible. Gates B and C remain open, so Phase 42
+is not complete and the frontend must not be submitted.
