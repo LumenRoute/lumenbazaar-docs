@@ -123,7 +123,7 @@ repository gate, evidence record, review, and commit are complete.
 | 35 | Docs | [docs #25](https://github.com/LumenRoute/lumenbazaar-docs/issues/25) | Open |
 | 36 | Cross-repository governance | [docs #26](https://github.com/LumenRoute/lumenbazaar-docs/issues/26) | Open |
 | 37 | Cross-repository issue curation | [docs #27](https://github.com/LumenRoute/lumenbazaar-docs/issues/27) | [Contracts backlog prepared](/funding/contracts-wave-backlog); independent estimate and dashboard points pending |
-| 38 | Application preparation | [docs #28](https://github.com/LumenRoute/lumenbazaar-docs/issues/28) | Open |
+| 38 | Application preparation | [docs #28](https://github.com/LumenRoute/lumenbazaar-docs/issues/28) | [Evidence pack prepared](/funding/contracts-application-evidence); Gate E remains open |
 | 39 | Contracts | [contracts #31](https://github.com/LumenRoute/lumenbazaar-contracts/issues/31) | Open |
 | 40 | Wave operations | [docs #29](https://github.com/LumenRoute/lumenbazaar-docs/issues/29) | Blocked on organizer approval |
 | 41 | Backend | [backend #34](https://github.com/LumenRoute/lumenbazaar-backend/issues/34) | Blocked on Gate B |
