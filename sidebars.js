@@ -108,6 +108,7 @@ const sidebars = {
         'funding/drips-readiness-ledger',
         'funding/contracts-wave-backlog',
         'funding/contracts-application-evidence',
+        'funding/contracts-application-status',
         'funding/milestones',
         'funding/metrics',
         'funding/conformance-report-template',
