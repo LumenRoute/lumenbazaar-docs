@@ -16,6 +16,14 @@ npm ci
 npm run check
 ```
 
+Enable the repository hook and run the dependency-free malware checks before pushing:
+
+```bash
+npm run security:install-hooks
+npm run security:malware-scan
+npm run security:malware-test
+```
+
 ## Content Standards
 
 - Prefer precise protocol language over marketing language.
